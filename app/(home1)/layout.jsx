@@ -11,7 +11,7 @@ export default function rootLayout({ children }) {
   return (
     <section lang="en">
          
-        <div className="relative bg-blue-300 h-screen">
+        <div>
         <Header/>
         <main className={"app"}>{children}</main>
         </div>

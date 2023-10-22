@@ -1,10 +1,10 @@
+import Header_LPage from '@/components/try';
 
-import React from 'react'
 
-const home = () => {
+export default function Home() {
   return (
-    <div>home</div>
-  )
+    <div> 
+      <Header_LPage/>
+    </div>
+  );
 }
-
-export default home

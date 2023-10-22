@@ -13,7 +13,7 @@ import {
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
 
 const products = [
-  { name: 'profile', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
+  { name: 'profile', description: 'Get a better understanding of your traffic', href: '/profile', icon: ChartPieIcon },
   { name: 'task', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
  ];
 const callsToAction = [
