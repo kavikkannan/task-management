@@ -21,7 +21,7 @@ const loginM = () => {
           <div className=" relative bottom-20 sm:mx-auto sm:w-full sm:max-w-sm">
             
             <h2 className=" mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Sign in to  account
+              Sign in  account
             </h2>
           </div>
   
