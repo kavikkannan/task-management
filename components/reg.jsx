@@ -7,42 +7,42 @@ import Header_LPage from '@/components/loading';
 
 export default function login() {
   const [loading, setLoading] = useState(false);
-
-  const [Name, setEmail] = useState('');
-  const [Publication, setPassword] = useState('');
-  const [Author, setUsername] = useState('');
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
+  const [Name, setUsername] = useState('');
   const router = useRouter();
   const signup = async () => {
-     try {
+    try {
+
       setLoading(true);
-      // Set loading to true when the request is initiated
-      const response = await fetch("http://localhost:8000/book/", {
+      
+      const response = await fetch(`http://localhost:9000/api/register`, {
         method: "POST",
         mode:"cors",
         headers: {
-          'Content-Type': 'pkglication/json'
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           Name,
-          Author,
-          Publication
+          Email,
+          Password,
         })
       });
-      
+
       if (response.ok) {
         console.log("success");
-        
-        router.push("/signin");
+        router.push("/login"); // Redirect to the login page after successful registration
       } else {
-        console.log("not success");      }
-    } catch (error) {
-        console.log(error);    
-      }finally {
-        setLoading(false); // Set loading to false when the request is completed
-        
+        console.log("Not Success");
+        // Handle the case where the registration was not successful, e.g., display an error message.
       }
-      
-  }
+    } catch (error) {
+      console.error(error);
+      // Handle any other errors that might occur during the API request.
+    } finally {
+      setLoading(false);
+    }
+  };  
     return (
       <>
       {loading ? (
@@ -78,26 +78,23 @@ export default function login() {
                     id="email"
                     name="email"
                     type="email"
+                    autoComplete="email"
                     required
                     onChange={(e) => setEmail(e.target.value)}
-                    
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
-  
               <div>
-                <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                    Username
-                  </label>
-                  
-                </div>
+                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                  Username
+                </label>
                 <div className="mt-2">
                   <input
                     id="username"
-                    name="username"
+                    name="username "
                     type="text"
+                    autoComplete="username"
                     required
                     onChange={(e) => setUsername(e.target.value)}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -116,23 +113,25 @@ export default function login() {
                     id="password"
                     name="password"
                     type="password"
+                    autoComplete="current-password"
                     required
                     onChange={(e) => setPassword(e.target.value)}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
-    
               </div>
-              <div>
+  
+              
+            </form>
+            <div>
                 <button
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   onClick={signup}
                 >
-                   sign in
+                   Register
                 </button>
               </div>
-            </form>
   
             <p className="mt-10 text-center text-sm text-gray-500">
               Already have a account?{' '}

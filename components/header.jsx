@@ -11,15 +11,14 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
-
+import Router, { useRouter } from 'next/navigation';
 const products = [
-  { name: 'profile', description: 'Get a better understanding of your traffic', href: '/profile', icon: ChartPieIcon },
+  { name: 'profile', description: 'Get a better understanding of your traffic',href: '/profile', icon: ChartPieIcon },
   { name: 'task', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
  ];
 const callsToAction = [
   { name: 'Contact manager', href: '#', icon: PhoneIcon },
 ];
-
 import Link from 'next/link';
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -27,7 +26,10 @@ function classNames(...classes) {
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const router=useRouter()
+  const navi = async (a) => {
+    router.push(a)
+  }
   return (
     <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -77,7 +79,7 @@ export default function Header() {
                         <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
                       </div>
                       <div className="flex-auto">
-                        <Link href={item.href} className="block font-semibold text-gray-900">
+                        <Link href="/profile" className="block font-semibold text-gray-900">
                           {item.name}
                           <span className="absolute inset-0" />
                         </Link>
@@ -157,8 +159,7 @@ export default function Header() {
                         {[...products, ...callsToAction].map((item) => (
                           <Disclosure.Button
                             key={item.name}
-                            as="Link"
-                            href={item.href}
+                            onClick={() => navi(item.href)}
                             className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}

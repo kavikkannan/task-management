@@ -1,14 +1,53 @@
 "use client"
 import {useRouter} from "next/navigation"
 import Link from "next/link"
-
-const loginM = () => {
+import React, { useState } from "react"; // Correct the import statement
+import Header_LPage from '@/components/loading';
+export default function loginM() {
+  const [loading, setLoading] = useState(false);
   const router=useRouter();
-  function Signin(){
-    router.push('/home')
-  }
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
+  const Signin = async () => {
+    try {
+
+      setLoading(true);
+      
+      const response = await fetch(`http://localhost:9000/api/login`, {
+        method: "POST",
+        mode:"cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Email,
+          Password,
+        })
+      });
+
+      if (response.ok) {
+        console.log("success");
+        router.push("/show"); // Redirect to the login page after successful registration
+      } else {
+        console.log("Not Success");
+        // Handle the case where the registration was not successful, e.g., display an error message.
+      }
+    } catch (error) {
+      console.error(error);
+      // Handle any other errors that might occur during the API request.
+    } finally {
+      setLoading(false);
+    }
+  };   
     return (
       <>
+      {loading ? (
+          <div className="relative">
+          {loading && <Header_LPage />} {/* Display loading animation when loading is true */}
+        </div>
+         // Display loading message or spinner
+      ) : (
+      
         <div className="absolute  w-full bg-purple-300  flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className=" absolute top-10 right-13 sm:mx-auto sm:w-full sm:max-w-sm">
           <Link href="/"><img
@@ -38,6 +77,7 @@ const loginM = () => {
                     type="email"
                     autoComplete="email"
                     required
+                    onChange={(e) => setEmail(e.target.value)}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -61,28 +101,24 @@ const loginM = () => {
                     type="password"
                     autoComplete="current-password"
                     required
+                    onChange={(e) => setPassword(e.target.value)}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
   
-              <div>
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  
-                >
-                   sign in
-                </button>
-              </div>
+              
             </form>
-            <button
+            <div>
+                <button
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   onClick={Signin}
                 >
-                   in
-              </button>
+                   sign in
+                </button>
+              </div>
+            
             <p className="mt-10 text-center text-sm text-gray-500">
               wanna create acc?{' '}
               <a href="signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
@@ -92,8 +128,7 @@ const loginM = () => {
           </div>
         </div>
         
-        
+        )}
         </>
-    )
-  }
-  export default loginM
+    );
+      }
