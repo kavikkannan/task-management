@@ -1,4 +1,4 @@
-import Kk_k from '@/components/showndelete'
+import Kk_k from '@/components/profile'
 
 export default function page() {
   return (

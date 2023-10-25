@@ -23,14 +23,16 @@ export default function loginM() {
           Email,
           Password,
         })
-      });
-
-      if (response.ok) {
-        console.log("success");
-        /* router.push("/home_manager"); */
+      }).then((response) => response.json())
+      
+        console.log(response);
+            /* if (response.ok) {
+        
+        console.log(response.json);
+        router.push("/home_manager"); 
       } else {
-        console.log("Not Success");
-      }
+        console.log("Not Success"); 
+      }*/
     } catch (error) {
       console.error(error);
     } finally {

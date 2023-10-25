@@ -29,8 +29,8 @@ export default function Header() {
   }
   return (
     <header className="bg-white">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div className="flex lg:flex-1">
+      <nav className=" mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <div className="  relative flex lg:flex">
           <Link href="/home_manager" className="-m-1.5 p-1.5">
             <span className="text-black sr-only">Your Company</span>
             <img className=" h-8 w-auto"
@@ -39,8 +39,9 @@ export default function Header() {
             />
           </Link>
         </div>
-        <div className="bg-green-200 flex lg:hidden">
+        <div className=" flex lg:hidden">
           <button
+          
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobileMenuOpen(true)}
@@ -49,8 +50,14 @@ export default function Header() {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <Popover className="relative">
+        <Popover.Group className="   hidden lg:flex lg:flex-1 gap-x-12 -b-1.5 px-28">
+        <Link href="#" className=" relative right-4 text-sm font-semibold leading-6 text-gray-900">
+            Features1
+          </Link>
+          <Link href="#" className="relative right-4 text-sm font-semibold leading-6 text-gray-900">
+          Features1
+          </Link>
+          <Popover className="absolute right-16">
             <Popover.Button className=" flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
               User
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
@@ -65,8 +72,8 @@ export default function Header() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                <div className="p-4">
+              <Popover.Panel className="absolute right-1 top-10  z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 flex ">
+                <div className="bg-green-200  p-4">
                   {products.map((item) => (
                     <div
                       key={item.name}
@@ -86,7 +93,7 @@ export default function Header() {
                   ))}
                 </div>
                 <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                  {callsToAction.map((item) => (
+                  {/* {callsToAction.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
@@ -95,28 +102,22 @@ export default function Header() {
                       <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
                       {item.name}
                     </Link>
-                  ))}
-                </div>
-              </Popover.Panel>
-            </Transition>
-          </Popover>
 
-          <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Features1
-          </Link>
-          <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
-          Features1
-          </Link>
-          <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
-          Features1
-          </Link>
-        </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="/" className="text-sm font-semibold leading-6 text-gray-900">
+                  ))} */}
+                </div>
+                <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <Link href="/" className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100">
             Log out 
             <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
+              </Popover.Panel>
+            </Transition>
+          </Popover>
+
+          
+        </Popover.Group>
+        
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />

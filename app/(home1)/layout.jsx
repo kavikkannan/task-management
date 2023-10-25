@@ -10,9 +10,10 @@ export default function rootLayout({ children }) {
   return (
     <section lang="en">
          
-        <div>
+        <div className='bg-gray-500'>
         <Header/>
-        <main className={"app"}>{children}</main>
+        <main 
+        className={"app"}>{children}</main>
         </div>
         
     </section>
