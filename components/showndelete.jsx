@@ -8,11 +8,11 @@ const showndeleteM = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/book/");
+        const response = await fetch("http://localhost:8000/user/");
         if (response.ok) {
           const result = await response.json();
-          setData(result); // Store the retrieved data in the state
-          setLoading(false); // Set loading to false
+          setData(result); 
+          setLoading(false); 
         } else {
           console.error("Failed to fetch data");
         }
@@ -22,25 +22,23 @@ const showndeleteM = () => {
     };
 
     fetchData();
-  }, []); // The empty dependency array ensures the effect runs once when the component mounts
+  }, []); 
 const deleteuser = async (a) =>{
     try {
-        const response = await fetch(`http://localhost:8000/book/${a}`, {
+        const response = await fetch(`http://localhost:8000/user/${a}`, {
           method: "DELETE",
         });
   
         if (response.ok) {
-          // Successfully deleted the user, you can update the state or take other actions as needed
-          // For example, you can remove the deleted user from the `data` state
           const updatedData = data.filter((item) => item.id !== a);
           setData(updatedData);
           const fetchData = async () => {
             try {
-              const response = await fetch("http://localhost:8000/book/");
+              const response = await fetch("http://localhost:8000/user/");
               if (response.ok) {
                 const result = await response.json();
-                setData(result); // Store the retrieved data in the state
-                setLoading(false); // Set loading to false
+                setData(result); 
+                setLoading(false); 
               } else {
                 console.error("Failed to fetch data");
               }

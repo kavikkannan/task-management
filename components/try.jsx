@@ -1,8 +1,7 @@
 "use client"
-import { Router, useRouter } from "next/navigation"; // Fix the import statement
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import React, { useState } from "react"; // Correct the import statement
-import { useEffect } from "react"; // Import useEffect for side effects
+import React, { useState } from "react"; 
 import Header_LPage from '@/components/loading';
 
 
@@ -16,7 +15,6 @@ const try1 = () => {
   const signin = async () => {
      try {
       setLoading(true);
-      // Set loading to true when the request is initiated
       const response = await fetch("http://localhost:8000/book/", {
         method: "POST",
         mode:"cors",
@@ -35,11 +33,11 @@ const try1 = () => {
         
         router.push("/home");
       } else {
-        console.log("not success");      }
+        console.log("not success");}
     } catch (error) {
         console.log(error);    
       }finally {
-        setLoading(false); // Set loading to false when the request is completed
+        setLoading(false); 
         
       }
       
@@ -49,9 +47,8 @@ const try1 = () => {
       <>
         {loading ? (
           <div className="relative">
-          {loading && <Header_LPage />} {/* Display loading animation when loading is true */}
+          {loading && <Header_LPage />} 
         </div>
-         // Display loading message or spinner
       ) : (
         <div className="absolute  w-full bg-purple-300  flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className=" absolute top-10 right-13 sm:mx-auto sm:w-full sm:max-w-sm">

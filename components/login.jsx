@@ -1,8 +1,8 @@
 "use client"
 import {useRouter} from "next/navigation"
 import Link from "next/link"
-import React, { useState } from "react"; // Correct the import statement
-import Header_LPage from '@/components/loading';
+import React, { useState } from "react"; 
+import Loading from '@/components/loading';
 export default function loginM() {
   const [loading, setLoading] = useState(false);
   const router=useRouter();
@@ -27,14 +27,12 @@ export default function loginM() {
 
       if (response.ok) {
         console.log("success");
-        router.push("/show"); // Redirect to the login page after successful registration
+        /* router.push("/show"); */ 
       } else {
         console.log("Not Success");
-        // Handle the case where the registration was not successful, e.g., display an error message.
       }
     } catch (error) {
       console.error(error);
-      // Handle any other errors that might occur during the API request.
     } finally {
       setLoading(false);
     }
@@ -43,9 +41,8 @@ export default function loginM() {
       <>
       {loading ? (
           <div className="relative">
-          {loading && <Header_LPage />} {/* Display loading animation when loading is true */}
+          {loading && <Loading />} 
         </div>
-         // Display loading message or spinner
       ) : (
       
         <div className="absolute  w-full bg-purple-300  flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">

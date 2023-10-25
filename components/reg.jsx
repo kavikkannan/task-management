@@ -1,15 +1,14 @@
 "use client"
-import { Router, useRouter } from "next/navigation"; // Fix the import statement
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import React, { useState } from "react"; // Correct the import statement
-import { useEffect } from "react"; // Import useEffect for side effects
+import React, { useState } from "react";
 import Header_LPage from '@/components/loading';
 
 export default function login() {
   const [loading, setLoading] = useState(false);
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
-  const [Name, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setUsername] = useState('');
   const router = useRouter();
   const signup = async () => {
     try {
@@ -23,22 +22,20 @@ export default function login() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          Name,
-          Email,
-          Password,
+          name,
+          email,
+          password,
         })
       });
 
       if (response.ok) {
         console.log("success");
-        router.push("/login"); // Redirect to the login page after successful registration
+        router.push("/login");
       } else {
         console.log("Not Success");
-        // Handle the case where the registration was not successful, e.g., display an error message.
       }
     } catch (error) {
       console.error(error);
-      // Handle any other errors that might occur during the API request.
     } finally {
       setLoading(false);
     }
@@ -49,7 +46,6 @@ export default function login() {
           <div className="relative">
           {loading && <Header_LPage />} {/* Display loading animation when loading is true */}
         </div>
-         // Display loading message or spinner
       ) : (
         <div className="absolute  w-full bg-purple-300  flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className=" absolute top-10 right-13 sm:mx-auto sm:w-full sm:max-w-sm">
