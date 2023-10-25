@@ -39,7 +39,7 @@ export default function Header() {
             />
           </Link>
         </div>
-        <div className="flex lg:hidden">
+        <div className="bg-green-200 flex lg:hidden">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -51,7 +51,7 @@ export default function Header() {
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+            <Popover.Button className=" flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
               User
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>

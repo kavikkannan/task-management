@@ -27,7 +27,7 @@ export default function loginM() {
 
       if (response.ok) {
         console.log("success");
-        router.push("/show");
+        /* router.push("/home_manager"); */
       } else {
         console.log("Not Success");
       }
