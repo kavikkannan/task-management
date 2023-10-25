@@ -4,10 +4,11 @@ import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react';
 import {
   Bars3Icon,
   ChartPieIcon,
-  CursorArrowRaysIcon
+  CursorArrowRaysIcon,
+  XMarkIcon
 } from '@heroicons/react/24/outline';
-import { ChevronDownIcon, PhoneIcon} from '@heroicons/react/20/solid';
-import Router, { useRouter } from 'next/navigation';
+import { ChevronDownIcon, PhoneIcon } from '@heroicons/react/20/solid';
+import { useRouter } from 'next/navigation';
 const products = [
   { name: 'profile', description: 'Get a better understanding of your traffic',href: '/profile', icon: ChartPieIcon },
   { name: 'task', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
@@ -30,7 +31,7 @@ export default function Header() {
     <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
+          <Link href="/home" className="-m-1.5 p-1.5">
             <span className="text-black sr-only">Your Company</span>
             <img className=" h-8 w-auto"
                 src=""

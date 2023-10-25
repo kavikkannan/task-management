@@ -8,23 +8,23 @@ import Header_LPage from '@/components/loading';
 const try1 = () => {
   const [loading, setLoading] = useState(false);
 
-  const [Name, setEmail] = useState('');
-  const [Publication, setPassword] = useState('');
-  const [Author, setUsername] = useState('');
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
+  const [Name, setUsername] = useState('');
   const router = useRouter();
   const signin = async () => {
      try {
       setLoading(true);
-      const response = await fetch("http://localhost:8000/book/", {
+      const response = await fetch("http://localhost:8000/user/", {
         method: "POST",
         mode:"cors",
         headers: {
           'Content-Type': 'pkglication/json'
         },
         body: JSON.stringify({
+          Email,
           Name,
-          Author,
-          Publication
+          Password
         })
       });
       
