@@ -5,10 +5,10 @@ import React, { useState } from "react";
 import Loading from '@/components/loading';
 export default function loginM() {
   const [loading, setLoading] = useState(false);
-
   const router=useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const Signin = async () => {
     try {
 
@@ -25,17 +25,30 @@ export default function loginM() {
           password,
         })
       }).then((response) => response.json())
+
+      /* const res = await fetch(`http://localhost:9000/api/user`)
+      .then((res) => res.json())
+       */
+        /* console.log(res.message); */
       
-        console.log(response.message);
-      if (response.ok) {
-        /* if(response.message=='success'){
+        if(response.message=='success'){
+          router.push("/home_main");
+          /* console.log(res.message); */
+          /* if(){
+            router.push("/home_manager");
+          }
+          else{
+
+          } */
           
-          router.push("/home_manager");
-        } */
+        }
+        else{
+          alert(response.message)
+        }
+      
          
-      } else {
-        console.log("error"); 
-      }
+    
+      
     } catch (error) {
       console.error(error);
     } finally {
