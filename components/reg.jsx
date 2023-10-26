@@ -6,6 +6,7 @@ import Header_LPage from '@/components/loading';
 
 export default function login() {
   const [loading, setLoading] = useState(false);
+  const [position, setPosition] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setUsername] = useState('');
@@ -25,6 +26,7 @@ export default function login() {
           name,
           email,
           password,
+          position,
         })
       });
 
@@ -116,7 +118,33 @@ export default function login() {
                   />
                 </div>
               </div>
-  
+              <div>
+  <label className="block text-sm font-medium leading-6 text-gray-900">Position</label>
+  <div className="mt-2">
+    <label className="inline-flex items-center">
+      <input
+        type="radio"
+        className="form-radio"
+        name="position"
+        value="employee"
+       checked={position === 'employee'}
+        onChange={() => setPosition('employee')}
+      />
+      <span className="ml-2">Employee</span>
+    </label>
+    <label className="inline-flex items-center">
+      <input
+        type="radio"
+        className="form-radio"
+        name="position"
+        value="manager"
+       checked={position === 'manager'}
+       onChange={() => setPosition('manager')}
+      />
+      <span className="ml-2">Manager</span>
+    </label>
+  </div>
+</div>
               
             </form>
             <div>

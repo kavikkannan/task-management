@@ -5,9 +5,10 @@ import React, { useState } from "react";
 import Loading from '@/components/loading';
 export default function loginM() {
   const [loading, setLoading] = useState(false);
+
   const router=useRouter();
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const Signin = async () => {
     try {
 
@@ -20,19 +21,21 @@ export default function loginM() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          Email,
-          Password,
+          email,
+          password,
         })
       }).then((response) => response.json())
       
-        console.log(response);
-            /* if (response.ok) {
-        
-        console.log(response.json);
-        router.push("/home_manager"); 
+        console.log(response.message);
+      if (response.ok) {
+        /* if(response.message=='success'){
+          
+          router.push("/home_manager");
+        } */
+         
       } else {
-        console.log("Not Success"); 
-      }*/
+        console.log("error"); 
+      }
     } catch (error) {
       console.error(error);
     } finally {
