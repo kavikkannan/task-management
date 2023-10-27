@@ -3,17 +3,22 @@ import {useRouter} from "next/navigation"
 import Link from "next/link"
 import React, { useState } from "react"; 
 import Loading from '@/components/loading';
+import { Result } from "postcss";
 export default function loginM() {
   const [loading, setLoading] = useState(false);
   const router=useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [data, setData] = useState([]);
+    
+
+
 
   const Signin = async () => {
     try {
 
       setLoading(true);
-      
+  
       const response = await fetch(`http://localhost:9000/api/login`, {
         method: "POST",
         mode:"cors",
@@ -25,22 +30,21 @@ export default function loginM() {
           password,
         })
       }).then((response) => response.json())
-
-      /* const res = await fetch(`http://localhost:9000/api/user`)
-      .then((res) => res.json())
-       */
-        /* console.log(res.message); */
+      
+     
       
         if(response.message=='success'){
-          router.push("/home_main");
-          /* console.log(res.message); */
-          /* if(){
-            router.push("/home_manager");
+          const data = await fetch(`http://localhost:8000/employe/${email}`);
+          const result = await data.json();
+          sessionStorage.setItem('user.email',email);
+          
+          if(result.position=='manager'){
+            router.push('/home_manager')
           }
           else{
-
-          } */
-          
+            if(result.position=='employe')
+            router.push('/home_employe')
+          }
         }
         else{
           alert(response.message)
@@ -54,7 +58,10 @@ export default function loginM() {
     } finally {
       setLoading(false);
     }
+    
   };   
+
+
     return (
       <>
       {loading ? (

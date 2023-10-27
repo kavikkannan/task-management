@@ -51,12 +51,10 @@ export default function Header() {
           </button>
         </div>
         <Popover.Group className="   hidden lg:flex lg:flex-1 gap-x-12 -b-1.5 px-28">
-        <Link href="#" className=" relative right-4 text-sm font-semibold leading-6 text-gray-900">
-            Features1
+        <Link href="/create" className=" relative right-4 text-sm font-semibold leading-6 text-gray-900">
+           create
           </Link>
-          <Link href="#" className="relative right-4 text-sm font-semibold leading-6 text-gray-900">
-          Features1
-          </Link>
+          
           <Popover className="absolute right-16">
             <Popover.Button className=" flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
               User

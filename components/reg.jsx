@@ -126,11 +126,11 @@ export default function login() {
         type="radio"
         className="form-radio"
         name="position"
-        value="employee"
-       checked={position === 'employee'}
-        onChange={() => setPosition('employee')}
+        value="employe"
+       checked={position === 'employe'}
+        onChange={() => setPosition('employe')}
       />
-      <span className="ml-2">Employee</span>
+      <span className="ml-2">Employe</span>
     </label>
     <label className="inline-flex items-center">
       <input
