@@ -18,40 +18,66 @@ function YourComponent() {
     setIsOpen(true);
   };
 
+  const closeForm = () => {
+    setIsOpen(false);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
-    setIsOpen(false); // Close the form after submission
+    // Handle form submission logic here
+    console.log('Submitted:', projectName, employeeName, taskName, deadline);
+    closeForm();
   };
 
   return (
-    <div>
-      
-      {isOpen && (
-        <div className=" top-0 left-0 w-full h-full flex  justify-center">
-          <div className="bg-green-200 p-4 rounded-md shadow-md">
-            <h2 className="text-black text-xl font-semibold mb-4">Enter Project Details</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="text-right">
-                <button
-                  type="submit"
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
+    <div className="bg-gray-200 min-h-screen flex flex-col items-center justify-start mb-4">
+    <p className="text-black font-bold mb-2">To fill Task details, click open task form</p>
+    <button
+      className="bg-blue-400 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded w-30 h-10"
+      onClick={openForm}
+    >
+      Open Task Form
+    </button>
+    {isOpen && (
+      <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-400 bg-opacity-70">
+        <div className="bg-green-200 p-4 rounded-md shadow-md">
+          <h2 className="text-black text-xl font-semibold mb-4">Enter Task Details</h2>
+          <div className="relative bottom-12 text-right">
+            <button onClick={closeForm} className="text-black px-4 py-2 rounded-md">
+              Close
+            </button>
           </div>
+          <form onSubmit={handleSubmit} className="p-4 sm:p-8 md:p-12 lg:p-16 xl:p-20">
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="Task Name"
+                value={taskName}
+                onChange={(e) => setTaskName(e.target.value)}
+                className="w-full p-2 border rounded-md text-black"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                type="date"
+                value={deadline}
+                onChange={(e) => setDeadline(e.target.value)}
+                className="w-full p-3 border rounded-md text-black"
+                required
+              />
+            </div>
+            <div className="text-right">
+              <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
-      )}
-      <button
-        className="bg-blue-500 text-white px-4 py-2 rounded-md"
-        onClick={openForm}
-      >
-        Open Form
-      </button>
-    </div>
-  );
+      </div>
+    )}
+  </div>
+  )
 }
 
 export default YourComponent;

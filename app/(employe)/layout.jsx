@@ -1,5 +1,5 @@
 
-import Header from '@/components/header';
+import Header from '@/components/headerE';
 
 export const metadata = {
   title: 'task',
@@ -10,7 +10,7 @@ export default function rootLayout({ children }) {
   return (
     <section lang="en">
          
-        <div className='bg-gray-500'>
+        <div className=' bg-green-200 '>
         <Header/>
         <main 
         className={"app"}>{children}</main>

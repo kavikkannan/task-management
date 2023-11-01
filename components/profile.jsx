@@ -3,8 +3,8 @@ import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 
 export default function Example() {
   return (
-    <form className='relative flex justify-center  '>
-      <div className=" bg-gray-500 space-y-12">
+    <form className=' relative  flex justify-center  '>
+      <div className="p-3 bg-green-200 space-y-12 rounded-2xl">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">

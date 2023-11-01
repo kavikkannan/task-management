@@ -8,7 +8,14 @@ const showndeleteM = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/user/");
+        const response = await fetch("http://localhost:9000/api/user",{
+          method: "GET",
+        mode:"cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: 'include',
+        });
         if (response.ok) {
           const result = await response.json();
           setData(result); 
@@ -34,8 +41,15 @@ const deleteuser = async (a) =>{
           setData(updatedData);
           const fetchData = async () => {
             try {
-              const response = await fetch("http://localhost:8000/user/");
-              if (response.ok) {
+              const response = await fetch("http://localhost:9000/api/user",{
+                method: "GET",
+              mode:"cors",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: 'include',
+              });
+                            if (response.ok) {
                 const result = await response.json();
                 setData(result); 
                 setLoading(false); 

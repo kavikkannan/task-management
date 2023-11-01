@@ -1,9 +1,9 @@
-import React from 'react'
-
-const page = () => {
+import Body from "@/components/bodyE"
+export default function Home_manager() {
   return (
-    <div>page</div>
-  )
-}
+    <div> 
 
-export default page
+        <Body/>
+        </div>
+  );
+}

@@ -19,7 +19,7 @@ export default function loginM() {
 
       setLoading(true);
   
-      const response = await fetch(`http://localhost:9000/api/login`, {
+      const log = await fetch(`http://localhost:9000/api/login`, {
         method: "POST",
         mode:"cors",
         headers: {
@@ -28,30 +28,35 @@ export default function loginM() {
         body: JSON.stringify({
           email,
           password,
-        })
-      }).then((response) => response.json())
-      
-     
-      
+        }),
+        credentials: 'include',
+      })
+      if (log.ok){
+        
+        const response = await log.json();
+        
+
         if(response.message=='success'){
           const data = await fetch(`http://localhost:8000/employe/${email}`);
           const result = await data.json();
-          sessionStorage.setItem('user.email',email);
           
-          if(result.position=='manager'){
-            router.push('/home_manager')
+           if(result.position=='manager'){
+            router.push('/home_manager');
           }
           else{
             if(result.position=='employe')
-            router.push('/home_employe')
+            router.push('/home_employe');
           }
         }
         else{
           alert(response.message)
         }
-      
-         
-    
+      } else {
+        
+        const errorData = await response.json();
+        console.error('Login failed:', errorData.message);
+      }
+
       
     } catch (error) {
       console.error(error);
